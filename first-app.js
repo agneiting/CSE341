@@ -1,1 +1,0 @@
-console.group('Hello from node.js');
