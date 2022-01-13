@@ -3,13 +3,44 @@
 const express = require('express');
 const router = express.Router();
 
+const userArray = ['Amber', 'Magen', 'Michann'];
+
 router.get('/', (req, res, next) => {
-  res.render('pages', {
+  res.render('pages/ta02.ejs', {
     title: 'Team Activity 02',
     path: '/ta02', // For pug, EJS
     activeTA03: true, // For HBS
     contentCSS: true, // For HBS
+    users: userArray,
+    message: message
   });
+});
+
+router.post('/addUser', (req, res, next) => {
+  const newUser = req.body.newUser;
+
+  if (userArray.indexOf(newUser) !== -1) {
+    message = "User already exists, please refer to list and add a non-existing user.";
+  } else {
+    userArray.push(newUser);
+    message = "User has been added.";    
+  }
+  //console.log(userArray);
+  res.redirect('/ta02/');
+});
+
+router.post('/removeUser', (req, res, next) => {
+  const remUser = req.body.remUser;
+
+  const index = userArray.indexOf(remUser);
+  if (index !== -1) {
+    userArray.splice(index, 1);
+    message = "User removed."; 
+  } else {
+    message = "User not found.";  
+  }
+
+  res.redirect('/ta02/');
 });
 
 module.exports = router;
