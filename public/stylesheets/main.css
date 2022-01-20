@@ -41,3 +41,18 @@
   width: 5rem;
   height: 5rem;
 }
+
+.product-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.product {
+  width: 30%;
+  margin: 3rem;
+}
+
+.product img {
+  max-height: 200px;
+}
